@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Component.EventSystem;
 using Component.PoolSystem;
 using Domain.Constants;
@@ -15,6 +16,7 @@ namespace Managers
         [SerializeField] private Transform _gameRoot;
         [SerializeField] private Transform _cardStartPlaceTransform;
         [SerializeField] private GameObject _eachCardPrefab;
+        [SerializeField] private Transform _gameGoldenFrame;
 
         private int _width;
         private int _height;
@@ -34,8 +36,10 @@ namespace Managers
             EventService.Unsubscribe<OnGameStart>(GameEvents.ON_GAME_START, OnGameStart);
         }
 
-        private void OnGameStart(OnGameStart onGameStart)
+        private async void OnGameStart(OnGameStart onGameStart)
         {
+            await Task.Delay(1000);
+
             _width = onGameStart.Width;
             _height = onGameStart.Height;
 
@@ -53,6 +57,12 @@ namespace Managers
                     card.GetComponent<Card>().Inititialize(j * CARD_HEIGHT - offsetY, i * CARD_WIDTH - offsetX);
                 }
             }
+
+            float widthScale = _gameGoldenFrame.localScale.x / (_height * CARD_HEIGHT);
+            float heightScale = _gameGoldenFrame.localScale.y / (_width * CARD_WIDTH);
+
+            float scale = Mathf.Min(widthScale, heightScale);
+            _gameRoot.transform.localScale = Vector3.one * scale;
         }
     }
 }
