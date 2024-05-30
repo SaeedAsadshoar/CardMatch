@@ -1,3 +1,6 @@
+using Component.EventSystem;
+using Domain.Constants;
+using Domain.EventClasses;
 using Presentation.UI.Panels;
 using Presentation.UI.Panels.Abstraction;
 using UnityEngine;
@@ -9,50 +12,49 @@ namespace Managers
         [SerializeField] private SplashScreenUI _splashScreenPanel;
         [SerializeField] private UIPanel _mainMenuPanel;
         [SerializeField] private LoadingUI _loadingPanel;
-        public bool IsSplashComplete => _splashScreenPanel.IsSplashComplete;
 
-        public static UIManager Instance;
         private void Awake()
         {
-            Instance = this;
-            
             _splashScreenPanel.gameObject.SetActive(true);
             _mainMenuPanel.gameObject.SetActive(true);
             _loadingPanel.gameObject.SetActive(true);
+
+            _splashScreenPanel.Reset();
 
             _splashScreenPanel.Show(true);
             _mainMenuPanel.Hide(true);
             _loadingPanel.Hide(true);
         }
 
-        public void SetLoadProgress(float progress)
+        private void OnEnable()
         {
-            if (_splashScreenPanel.IsShow)
-            {
-                _splashScreenPanel.SetProgress(progress);
-            }
-            else
-            {
-                _loadingPanel.SetProgress(progress);
-            }
+            EventService.Subscribe<OnGameStart>(GameEvents.ON_GAME_START, OnGameStart);
+            EventService.Subscribe<bool>(GameEvents.ON_SPLASH_SCREEN_COMPLETED, OnSplashScreenCompleted);
         }
 
-        public void InitLoadProgress()
+        private void OnDisable()
         {
-            if (_splashScreenPanel.IsShow)
-            {
-                _splashScreenPanel.Reset();
-            }
-            else
-            {
-                _loadingPanel.Reset();
-            }
+            EventService.Unsubscribe<OnGameStart>(GameEvents.ON_GAME_START, OnGameStart);
+            EventService.Unsubscribe<bool>(GameEvents.ON_SPLASH_SCREEN_COMPLETED, OnSplashScreenCompleted);
         }
 
-        public void ShowMainMenu()
+        private void OnSplashScreenCompleted(bool result)
         {
-            _splashScreenPanel.Hide(false);
-            _mainMenuPanel.Show(false);
+            ShowMainMenu();
+        }
+
+        private void OnGameStart(OnGameStart onGameStart)
+        {
+            _loadingPanel.Reset();
+            _splashScreenPanel.Hide();
+            _mainMenuPanel.Hide();
+            _loadingPanel.Show();
+        }
+
+        private void ShowMainMenu()
+        {
+            _splashScreenPanel.Hide();
+            _mainMenuPanel.Show();
         }
     }
 }

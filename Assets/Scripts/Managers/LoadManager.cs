@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
+using Component.EventSystem;
 using Component.ResourceSystem;
+using Domain.Constants;
 using UnityEngine;
 
 namespace Managers
@@ -8,7 +10,6 @@ namespace Managers
     {
         private void Start()
         {
-            UIManager.Instance.InitLoadProgress();
             Invoke(nameof(StartLoadGame), 1);
         }
 
@@ -22,18 +23,13 @@ namespace Managers
                 if (ResourceService.Progress - preProgress >= 0.01f)
                 {
                     preProgress = ResourceService.Progress;
-                    UIManager.Instance.SetLoadProgress(preProgress);
+                    EventService.Invoke<float>(GameEvents.ON_SPLASH_SCREEN_LOAD_PROGRESS_CHANGED, ResourceService.Progress);
                 }
 
                 await Task.Yield();
             }
 
-            while (!UIManager.Instance.IsSplashComplete)
-            {
-                await Task.Yield();
-            }
-
-            UIManager.Instance.ShowMainMenu();
+            EventService.Invoke<bool>(GameEvents.ON_RESOURCES_LOADED, true);
         }
     }
 }
