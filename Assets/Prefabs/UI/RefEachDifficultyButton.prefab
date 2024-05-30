@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8825582395952638383}
   - component: {fileID: 3422906010608640161}
   - component: {fileID: 3572839794291605136}
+  - component: {fileID: 3987617912626691858}
   m_Layer: 5
   m_Name: RefEachDifficultyButton
   m_TagString: Untagged
@@ -77,6 +78,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 2
+--- !u!114 &3987617912626691858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3627776439534224733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae947135b2943a0b994e40cec880149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _difficultyLabel: {fileID: 4970005682447690817}
 --- !u!1 &5863023328299643781
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +103,7 @@ GameObject:
   - component: {fileID: 2303642520586443275}
   - component: {fileID: 4970005682447690817}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: DifficultyLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
