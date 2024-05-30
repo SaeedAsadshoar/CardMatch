@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 055474bcbccde7b499da8b909ed6425c
+  m_SerializeEntries:
+  - m_GUID: e15659f479781354197a78ccd52cfa86
+    m_Address: Animals
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 245e8024afbe9a34fbb245c1af98c9fa
+    m_Address: CardGroups
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fd29e52ef1ae4114bb7de8170fd7d489
+    m_Address: Cars
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9df26f8401953df43a323dfe43023db9
+    m_Address: Flowers
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e695f3d431b20c94babff777bb6aafa4
+    m_Address: Themes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a2f62b99fd09e614c958e651a28117c1, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 3ab3f81e7825d5647bb374afb464964e, type: 2}
+    - {fileID: 11400000, guid: c6b479765eec885498d3d25b5dc40489, type: 2}
