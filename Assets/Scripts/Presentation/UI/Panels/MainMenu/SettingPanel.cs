@@ -16,7 +16,7 @@ namespace Presentation.UI.Panels.MainMenu
 
         private void OnBackButtonClicked()
         {
-            _mainMenuUI.Show(false);
+            _mainMenuUI.Show();
         }
     }
 }

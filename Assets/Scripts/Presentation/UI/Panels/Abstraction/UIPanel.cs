@@ -27,7 +27,7 @@ namespace Presentation.UI.Panels.Abstraction
             }
         }
 
-        public virtual void Show(bool isImmediate)
+        public virtual void Show(bool isImmediate = false)
         {
             StopCoroutine(nameof(HidePanel));
 
@@ -41,7 +41,7 @@ namespace Presentation.UI.Panels.Abstraction
             }
         }
 
-        public virtual void Hide(bool isImmediate)
+        public virtual void Hide(bool isImmediate = false)
         {
             StopCoroutine(nameof(ShowPanel));
 

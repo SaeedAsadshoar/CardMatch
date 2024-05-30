@@ -21,7 +21,7 @@ namespace Presentation.UI.Panels
             _mainPanel.InitializeEvents(OnStartGameButtonClicked, OnSettingButtonClicked, OnThemeButtonClicked);
         }
 
-        public override void Show(bool isImmediate)
+        public override void Show(bool isImmediate = false)
         {
             base.Show(isImmediate);
             _mainPanel.Show(true);
@@ -32,26 +32,26 @@ namespace Presentation.UI.Panels
 
         private void OnStartGameButtonClicked()
         {
-            _mainPanel.Hide(false);
-            _settingPanel.Hide(false);
-            _themePanel.Hide(false);
-            _gameDifficultyUI.Show(false);
+            _mainPanel.Hide();
+            _settingPanel.Hide();
+            _themePanel.Hide();
+            _gameDifficultyUI.Show();
         }
 
         private void OnSettingButtonClicked()
         {
-            _mainPanel.Hide(false);
-            _settingPanel.Show(false);
-            _themePanel.Hide(false);
-            _gameDifficultyUI.Hide(false);
+            _mainPanel.Hide();
+            _settingPanel.Show();
+            _themePanel.Hide();
+            _gameDifficultyUI.Hide();
         }
 
         private void OnThemeButtonClicked()
         {
-            _mainPanel.Hide(false);
-            _settingPanel.Hide(false);
-            _themePanel.Show(false);
-            _gameDifficultyUI.Hide(false);
+            _mainPanel.Hide();
+            _settingPanel.Hide();
+            _themePanel.Show();
+            _gameDifficultyUI.Hide();
         }
     }
 }

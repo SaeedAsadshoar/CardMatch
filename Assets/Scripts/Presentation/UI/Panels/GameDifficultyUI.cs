@@ -1,3 +1,6 @@
+using Component.EventSystem;
+using Domain.Constants;
+using Domain.EventClasses;
 using Presentation.UI.Panels.Abstraction;
 using Presentation.UI.Panels.Elements;
 using UnityEngine;
@@ -21,10 +24,10 @@ namespace Presentation.UI.Panels
 
         private void OnBackButtonClicked()
         {
-            _mainMenuUI.Show(false);
+            _mainMenuUI.Show();
         }
 
-        public override void Show(bool isImmediate)
+        public override void Show(bool isImmediate = false)
         {
             if (!_isInitialized)
             {
@@ -44,8 +47,9 @@ namespace Presentation.UI.Panels
             base.Show(isImmediate);
         }
 
-        private void OnSelectDifficulty()
+        private void OnSelectDifficulty(int width, int height)
         {
+            EventService.Invoke<OnGameStart>(GameEvents.ON_GAME_START, new OnGameStart(width, height));
         }
     }
 }
