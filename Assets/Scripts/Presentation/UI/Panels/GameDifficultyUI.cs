@@ -35,6 +35,7 @@ namespace Presentation.UI.Panels
                 {
                     for (int j = 2; j < 7; j++)
                     {
+                        if ((i * j) % 2 != 0) continue;
                         GameObject ins = Instantiate(_eachDifficultyButtonPrefab, _parent);
                         ins.transform.localScale = Vector3.one;
                         ins.GetComponent<EachDifficultyButton>().Initialize(i, j, OnSelectDifficulty);
@@ -49,7 +50,7 @@ namespace Presentation.UI.Panels
 
         private void OnSelectDifficulty(int width, int height)
         {
-            EventService.Invoke<OnGameStartLoading>(GameEvents.ON_GAME_START_LOADING, new OnGameStartLoading(width, height));
+            EventService.Invoke<OnGameStartLoading>(GameEvents.ON_GAME_START_LOADING, new OnGameStartLoading(width, height, true));
         }
     }
 }

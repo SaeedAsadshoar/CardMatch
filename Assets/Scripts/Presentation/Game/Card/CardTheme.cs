@@ -1,24 +1,20 @@
 using UnityEngine;
 
-namespace Presentation.Game
+namespace Presentation.Game.Card
 {
-    public class Card : MonoBehaviour
+    public class CardTheme : MonoBehaviour
     {
         [SerializeField] private MeshRenderer[] _themeRenderers;
         [SerializeField] private MeshRenderer _cardRenderer;
-        private string _id;
 
-        public void Initialize(Texture2D theme, Texture2D card, float x, float y)
+        public void LoadTheme(Texture2D theme, Texture2D card)
         {
-            transform.position = new Vector3(x, 0, y);
-
             foreach (var themeRenderer in _themeRenderers)
             {
                 themeRenderer.sharedMaterial.mainTexture = theme;
             }
 
             _cardRenderer.material.mainTexture = card;
-            _id = card.name;
         }
     }
 }

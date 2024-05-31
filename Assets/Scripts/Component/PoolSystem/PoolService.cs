@@ -19,6 +19,7 @@ namespace Component.PoolSystem
             if (!_pool.ContainsKey(itemId))
             {
                 GameObject ins = Object.Instantiate(gameObject, _root, true);
+                ins.name = gameObject.name;
                 ins.SetActive(false);
                 _pool.Add(itemId, new List<GameObject>());
                 _pool[itemId].Add(ins);
@@ -55,9 +56,17 @@ namespace Component.PoolSystem
         {
             var item = _pool[itemId][0];
             GameObject ins = Object.Instantiate(item, _root, true);
+            ins.name = $"{item.name}_{_pool[itemId].Count}";
             ins.SetActive(false);
             _pool[itemId].Add(ins);
             return ins;
+        }
+
+        public static void BackToPool(GameObject gameObject)
+        {
+            gameObject.SetActive(false);
+            gameObject.transform.SetParent(_root);
+            gameObject.transform.localScale = Vector3.one;
         }
     }
 }

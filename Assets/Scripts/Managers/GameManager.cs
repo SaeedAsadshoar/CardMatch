@@ -6,7 +6,7 @@ using Component.PoolSystem;
 using Component.ThemeSystem;
 using Domain.Constants;
 using Domain.EventClasses;
-using Presentation.Game;
+using Presentation.Game.Card;
 using UnityEngine;
 
 namespace Managers
@@ -15,35 +15,21 @@ namespace Managers
     {
         private const float CARD_WIDTH = 1.5f;
         private const float CARD_HEIGHT = 1.5f;
-        private const float EACH_CARD_REST_TIME = 1f;
-        private const float EACH_CARD_GAME_TIME = 5f;
 
         [SerializeField] private Transform _gameRoot;
         [SerializeField] private Transform _cardStartPlaceTransform;
         [SerializeField] private GameObject _eachCardPrefab;
         [SerializeField] private Transform _gameGoldenFrame;
+        [SerializeField] private GameLogic _gameLogic;
 
         private int _width;
         private int _height;
-        private List<Texture2D> _cards;
-        private Texture2D _theme;
-        private int _gameTime;
-        private int _restTime;
 
-        public int GameTime => _gameTime;
-        public int RestTime => _restTime;
+        private readonly List<GameObject> _cardObjects = new List<GameObject>();
 
-        public static GameManager Instance;
 
         private void Awake()
         {
-            if (Instance != null)
-            {
-                Debug.LogError("There are more than one GameManager!!!");
-                return;
-            }
-
-            Instance = this;
             PoolService.AddObjectToPool(PoolItemIds.GAME_CARD, _eachCardPrefab);
         }
 
@@ -59,34 +45,43 @@ namespace Managers
 
         private async void OnGameStartLoading(OnGameStartLoading onGameStartLoading)
         {
+            Reset();
+
             await Task.Delay(1000);
 
-            _width = onGameStartLoading.Width;
-            _height = onGameStartLoading.Height;
+            if (onGameStartLoading.IsFirstTime)
+            {
+                _width = onGameStartLoading.Width;
+                _height = onGameStartLoading.Height;
+            }
 
             var task = ThemeService.GetCards();
             await task;
 
-            _cards = task.Result.Textures.ToList();
-            _theme = ThemeService.GetThemeSprite();
-
-            var cards = RandomizeCards();
+            var cards = RandomizeCards(task.Result.Textures.ToList());
             CreateLevel(cards);
             SetLevelScale();
 
             await Task.Delay(1000);
 
-            _gameTime = (int)(_width * _height * EACH_CARD_GAME_TIME);
-            _restTime = (int)(_width * _height * EACH_CARD_REST_TIME);
-
             EventService.Invoke<bool>(GameEvents.ON_GAME_FINISH_LOADING, true);
+            _gameLogic.StartGame(_width, _height, onGameStartLoading.IsFirstTime);
         }
 
-        private List<Texture2D> RandomizeCards()
+        private void Reset()
+        {
+            for (int i = 0; i < _cardObjects.Count; i++)
+            {
+                PoolService.BackToPool(_cardObjects[i]);
+            }
+
+            _cardObjects.Clear();
+            _gameRoot.transform.localScale = Vector3.one;
+        }
+
+        private List<Texture2D> RandomizeCards(List<Texture2D> cards)
         {
             List<Texture2D> temp = new List<Texture2D>();
-            List<Texture2D> cards = _cards.ToList();
-
             for (int i = 0; i < _width * _height / 2; i++)
             {
                 var random = Random.Range(0, cards.Count);
@@ -114,15 +109,20 @@ namespace Managers
             float offsetY = (_height - 1) * CARD_HEIGHT / 2.0f;
 
             int cardIndex = 0;
+
+            var themeTexture = ThemeService.GetThemeSprite();
             for (int i = 0; i < _width; i++)
             {
                 for (int j = 0; j < _height; j++)
                 {
                     var card = PoolService.GetItem(PoolItemIds.GAME_CARD);
                     card.transform.SetParent(_gameRoot);
-                    card.transform.position = _cardStartPlaceTransform.position;
+                    card.transform.localScale = Vector3.one;
+                    _cardObjects.Add(card);
 
-                    card.GetComponent<Card>().Initialize(_theme, cards[cardIndex], j * CARD_HEIGHT - offsetY, i * CARD_WIDTH - offsetX);
+                    float x = j * CARD_HEIGHT - offsetY;
+                    float y = i * CARD_WIDTH - offsetX;
+                    card.GetComponent<Card>().Initialize(themeTexture, cards[cardIndex], x, y, OnClickOnCard);
                     cardIndex++;
                 }
             }
@@ -135,6 +135,11 @@ namespace Managers
 
             float scale = Mathf.Min(widthScale, heightScale);
             _gameRoot.transform.localScale = Vector3.one * scale;
+        }
+
+        private void OnClickOnCard(Card card)
+        {
+            _gameLogic.SelectCard(card);
         }
     }
 }

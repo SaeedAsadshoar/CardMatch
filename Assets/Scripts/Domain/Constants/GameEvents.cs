@@ -10,5 +10,11 @@ namespace Domain.Constants
         public const int ON_GAME_FINISH_LOADING = 5;
         public const int ON_GAME_REST_TIME_CHANGED = 6;
         public const int ON_GAME_TIME_CHANGED = 7;
+        public const int ON_CARDS_CHECKED = 8;
+        public const int ON_HIDE_ALL_CARDS = 9;
+        public const int ON_GAME_START = 10;
+        public const int ON_GAME_FINISHED = 11;
+        public const int ON_BACK_TO_HOME_PRESSED = 12;
+        public const int ON_SCORE_CHANGED = 13;
     }
 }

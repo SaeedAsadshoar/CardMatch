@@ -38,29 +38,57 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: eb3db5b0868bc4f348e3d3a1dfbf32a8, type: 3}
+  - {fileID: 21300000, guid: 9e60e4c19a24d4f9ab3b882467e3ff28, type: 3}
   - {fileID: 21300000, guid: 5b892932452be475cb2e10ea22938115, type: 3}
   - {fileID: 21300000, guid: f4d65e4241c89449890e73f2ff2d27cd, type: 3}
+  - {fileID: 21300000, guid: 1d71065237f984e9c93efc943f6cb167, type: 3}
   - {fileID: 21300000, guid: 362cdbc283a1c43a7abec33080b04398, type: 3}
+  - {fileID: 21300000, guid: 6af99763f9e7342798453becb19dc6b1, type: 3}
   - {fileID: 21300000, guid: ce074144a8f7b47508cffe4445e20fb5, type: 3}
   - {fileID: 21300000, guid: cb37917483ee24fea8fab306393441e5, type: 3}
   - {fileID: 21300000, guid: b78e1c94f1bcb42a7996ce616745e100, type: 3}
   - {fileID: 21300000, guid: fbc232a40047843fba0231c2a71ef457, type: 3}
   - {fileID: 21300000, guid: af67f6c46933441daaa64d6880890586, type: 3}
+  - {fileID: 21300000, guid: cf33b4f588e264da0b0d1264f151e2ff, type: 3}
   - {fileID: 21300000, guid: 2bc701b63b63f40e0893a9fabeaa0a78, type: 3}
+  - {fileID: 21300000, guid: 737084c85e7ce40359a08fd9fce48e63, type: 3}
+  - {fileID: 21300000, guid: 6dd98809192e24bb185001de5a7f7b38, type: 3}
   - {fileID: 21300000, guid: cdec219ba90ca4cd7b967e2a3385b9e6, type: 3}
+  - {fileID: 21300000, guid: bbf8014c593bc4f0ea84a44f4365cff4, type: 3}
+  - {fileID: 21300000, guid: a22e4b6c4fe9242aea74ea03dc066589, type: 3}
+  - {fileID: 21300000, guid: 9923687cb4b1746aa8948dc497b2ba79, type: 3}
+  - {fileID: 21300000, guid: a8b9addced9084c248e02afa1bb62d20, type: 3}
+  - {fileID: 21300000, guid: 2e5250adff9384f0e9e22b2c786a8d28, type: 3}
   - {fileID: 21300000, guid: 8e00845f7485c4c0cae22ef3fa875d60, type: 3}
+  - {fileID: 21300000, guid: b7d7e36f0c41c4316a6ea75d0a9321a6, type: 3}
+  - {fileID: 21300000, guid: 2fec277fdcb7b4737af446bbc4b497e6, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Popup01_Single_Navy
+  - Title_Flag01_Red
   - ClanFlag_Bg_Small2
   - Slider_BasicTrapezoid01_Fill_Red
+  - Icon_Star
   - Button01_Sky
+  - Pictoicon_Coin_Crown
   - ItemFrame06_Yellow
   - Button01_Green
   - Icon_PictoIcon_Back
   - ItemFrame06_Blue
   - Slider_BasicTriple_Fill_Middle_Yellow
+  - Icon_Stopwatch
   - Button01_Orange
+  - Icon_Timer
+  - Icon_Heart
   - ItemFrame06_Pink
+  - Pictoicon_Close
+  - Icon_Star_Red
+  - Icon_Trophy
+  - Title_Flag02_Green
+  - Pictoicon_Home_0
   - ClanFlag_Bg_Large4
+  - Icon_Energy_Yellow
+  - Pictoicon_Arrow_Fw
   m_RenderDataMap: {}
   m_Tag: UISpriteAtlas
   m_IsVariant: 0
