@@ -15,6 +15,8 @@ namespace Managers
     {
         private const float CARD_WIDTH = 1.5f;
         private const float CARD_HEIGHT = 1.5f;
+        private const float EACH_CARD_REST_TIME = 1f;
+        private const float EACH_CARD_GAME_TIME = 5f;
 
         [SerializeField] private Transform _gameRoot;
         [SerializeField] private Transform _cardStartPlaceTransform;
@@ -25,28 +27,42 @@ namespace Managers
         private int _height;
         private List<Texture2D> _cards;
         private Texture2D _theme;
+        private int _gameTime;
+        private int _restTime;
+
+        public int GameTime => _gameTime;
+        public int RestTime => _restTime;
+
+        public static GameManager Instance;
 
         private void Awake()
         {
+            if (Instance != null)
+            {
+                Debug.LogError("There are more than one GameManager!!!");
+                return;
+            }
+
+            Instance = this;
             PoolService.AddObjectToPool(PoolItemIds.GAME_CARD, _eachCardPrefab);
         }
 
         private void OnEnable()
         {
-            EventService.Subscribe<OnGameStart>(GameEvents.ON_GAME_START, OnGameStart);
+            EventService.Subscribe<OnGameStartLoading>(GameEvents.ON_GAME_START_LOADING, OnGameStartLoading);
         }
 
         private void OnDisable()
         {
-            EventService.Unsubscribe<OnGameStart>(GameEvents.ON_GAME_START, OnGameStart);
+            EventService.Unsubscribe<OnGameStartLoading>(GameEvents.ON_GAME_START_LOADING, OnGameStartLoading);
         }
 
-        private async void OnGameStart(OnGameStart onGameStart)
+        private async void OnGameStartLoading(OnGameStartLoading onGameStartLoading)
         {
             await Task.Delay(1000);
 
-            _width = onGameStart.Width;
-            _height = onGameStart.Height;
+            _width = onGameStartLoading.Width;
+            _height = onGameStartLoading.Height;
 
             var task = ThemeService.GetCards();
             await task;
@@ -57,6 +73,13 @@ namespace Managers
             var cards = RandomizeCards();
             CreateLevel(cards);
             SetLevelScale();
+
+            await Task.Delay(1000);
+
+            _gameTime = (int)(_width * _height * EACH_CARD_GAME_TIME);
+            _restTime = (int)(_width * _height * EACH_CARD_REST_TIME);
+
+            EventService.Invoke<bool>(GameEvents.ON_GAME_FINISH_LOADING, true);
         }
 
         private List<Texture2D> RandomizeCards()

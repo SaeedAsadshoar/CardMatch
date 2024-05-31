@@ -1,6 +1,6 @@
 namespace Domain.EventClasses
 {
-    public class OnGameStart
+    public class OnGameStartLoading
     {
         private readonly int _width;
         private readonly int _height;
@@ -8,7 +8,7 @@ namespace Domain.EventClasses
         public int Width => _width;
         public int Height => _height;
 
-        public OnGameStart(int width, int height)
+        public OnGameStartLoading(int width, int height)
         {
             _width = width;
             _height = height;

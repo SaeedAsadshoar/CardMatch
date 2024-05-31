@@ -49,7 +49,7 @@ namespace Presentation.UI.Panels
 
         private void OnSelectDifficulty(int width, int height)
         {
-            EventService.Invoke<OnGameStart>(GameEvents.ON_GAME_START, new OnGameStart(width, height));
+            EventService.Invoke<OnGameStartLoading>(GameEvents.ON_GAME_START_LOADING, new OnGameStartLoading(width, height));
         }
     }
 }
