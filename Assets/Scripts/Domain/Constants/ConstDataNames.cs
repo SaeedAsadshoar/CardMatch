@@ -6,5 +6,7 @@ namespace Domain.Constants
         public const string CURRENT_THEME_INDEX = "50714005b7407ba4f717ba4f3";
         public const string CURRENT_CARDS_INDEX = "ca27ba7ba4f5ca2403bc4c4";
         public const string MAX_WIN_COUNT = "a4f5ca2a4f3f07ba4403bc";
+        public const string MUSIC_VOLUME = "a4f717ba4f3ca2b740717bac";
+        public const string SFX_VOLUME = "5c03aa4f2a4f37ba440fbc";
     }
 }

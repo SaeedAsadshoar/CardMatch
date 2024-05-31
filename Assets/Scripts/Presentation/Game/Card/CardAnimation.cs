@@ -1,4 +1,6 @@
 using System.Collections;
+using Component.EventSystem;
+using Domain.Constants;
 using UnityEngine;
 
 namespace Presentation.Game.Card
@@ -11,6 +13,7 @@ namespace Presentation.Game.Card
         [SerializeField] private AnimationClip _showCardAnimation;
         [SerializeField] private AnimationClip _hideCardAnimation;
         [SerializeField] private AnimationClip _successCardAnimation;
+        [SerializeField] private AudioSource _flipAudio;
 
         private WaitForSeconds _waitForShowAnimationTime;
         private WaitForSeconds _waitForHideAnimationTime;
@@ -45,6 +48,7 @@ namespace Presentation.Game.Card
         {
             _touchCollider.enabled = false;
             _isFlipping = true;
+            _flipAudio.Play();
             _cardAnimation.Play(_showCardAnimation.name);
             yield return _waitForShowAnimationTime;
             _isFlipping = false;
@@ -54,6 +58,7 @@ namespace Presentation.Game.Card
         {
             _touchCollider.enabled = false;
             _isFlipping = true;
+            _flipAudio.Play();
             _cardAnimation.Play(_hideCardAnimation.name);
             yield return _waitForHideAnimationTime;
             _isFlipping = false;
