@@ -16,5 +16,7 @@ namespace Domain.Constants
         public const int ON_GAME_FINISHED = 11;
         public const int ON_BACK_TO_HOME_PRESSED = 12;
         public const int ON_SCORE_CHANGED = 13;
+        public const int ON_MUSIC_VOLUME_CHANGED = 14;
+        public const int ON_SFX_VOLUME_CHANGED = 15;
     }
 }
