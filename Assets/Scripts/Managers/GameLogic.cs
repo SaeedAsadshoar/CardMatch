@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Component.EventSystem;
+using Component.SettingSystem;
 using Component.StorageSystem;
 using Domain.Constants;
 using Domain.EventClasses;
@@ -11,9 +12,6 @@ namespace Managers
 {
     public class GameLogic : MonoBehaviour
     {
-        private const float EACH_CARD_REST_TIME = 1f;
-        private const float EACH_CARD_GAME_TIME = 5f;
-
         [SerializeField] private List<SelectedCards> _selectedCards = new List<SelectedCards>();
 
         private float _restTime;
@@ -40,8 +38,8 @@ namespace Managers
 
             _comboCount = 0;
 
-            _playTime = (int)(width * height * EACH_CARD_GAME_TIME);
-            _restTime = (int)(width * height * EACH_CARD_REST_TIME);
+            _playTime = (int)(width * height * SettingService.EachCardShowTime);
+            _restTime = (int)(width * height * SettingService.EachCardRestTime);
 
             _startTime = 0;
 

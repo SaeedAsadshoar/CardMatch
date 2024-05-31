@@ -1,4 +1,5 @@
 using System.Collections;
+using Component.SettingSystem;
 using Presentation.UI.Panels.Interface;
 using UnityEngine;
 
@@ -6,9 +7,6 @@ namespace Presentation.UI.Panels.Abstraction
 {
     public class UIPanel : MonoBehaviour, IUIPanel
     {
-        private const float PANEL_SHOW_SPEED = 2f;
-        private const float PANEL_HIDE_SPEED = 3f;
-
         private CanvasGroup _canvasGroup;
         private bool _isShow;
 
@@ -68,7 +66,7 @@ namespace Presentation.UI.Panels.Abstraction
             _isShow = true;
             while (_canvasGroup.alpha < 1)
             {
-                _canvasGroup.alpha += PANEL_SHOW_SPEED * Time.deltaTime;
+                _canvasGroup.alpha += SettingService.PanelShowSpeed * Time.deltaTime;
                 yield return null;
             }
 
@@ -81,7 +79,7 @@ namespace Presentation.UI.Panels.Abstraction
         {
             while (_canvasGroup.alpha > 0)
             {
-                _canvasGroup.alpha -= PANEL_HIDE_SPEED * Time.deltaTime;
+                _canvasGroup.alpha -= SettingService.PanelHideSpeed * Time.deltaTime;
                 yield return null;
             }
 

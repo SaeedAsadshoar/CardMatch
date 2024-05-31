@@ -4,5 +4,6 @@ namespace Domain.Constants
     {
         public const string THEMES = "Themes";
         public const string CARD_GROUPS = "CardGroups";
+        public const string SETTINGS = "Settings";
     }
 }
