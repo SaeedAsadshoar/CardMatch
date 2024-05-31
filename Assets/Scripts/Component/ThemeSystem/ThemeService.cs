@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Component.AddressableSystem;
 using Component.StorageSystem;
@@ -39,6 +37,52 @@ namespace Component.ThemeSystem
             var task = AddressableService.GetAddressable<Cards>(_cardGroups.AllCardGroups[_currentCardsIndex].Key);
             await task;
             return task.Result;
+        }
+
+        public static Theme[] GetAllThemes()
+        {
+            return _themes.AllThemes;
+        }
+
+        public static CardGroup[] GetAllCardGroups()
+        {
+            return _cardGroups.AllCardGroups;
+        }
+
+        public static bool IsThemeSelected(string themeName)
+        {
+            return _themes.AllThemes[_currentThemeIndex].Name.Equals(themeName);
+        }
+
+        public static bool IsCardGroupSelected(string cardGroupName)
+        {
+            return _cardGroups.AllCardGroups[_currentCardsIndex].Name.Equals(cardGroupName);
+        }
+
+        public static void SelectTheme(string themeName)
+        {
+            for (int i = 0; i < _themes.AllThemes.Length; i++)
+            {
+                if (_themes.AllThemes[i].Name.Equals(themeName))
+                {
+                    _currentThemeIndex = i;
+                    StorageService.SetData(ConstDataNames.CURRENT_THEME_INDEX, _currentThemeIndex);
+                    return;
+                }
+            }
+        }
+
+        public static void SelectCardGroup(string cardGroupName)
+        {
+            for (int i = 0; i < _cardGroups.AllCardGroups.Length; i++)
+            {
+                if (_cardGroups.AllCardGroups[i].Name.Equals(cardGroupName))
+                {
+                    _currentCardsIndex = i;
+                    StorageService.SetData(ConstDataNames.CURRENT_CARDS_INDEX, _currentCardsIndex);
+                    return;
+                }
+            }
         }
     }
 }

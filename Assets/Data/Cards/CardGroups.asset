@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardGroups:
   - _name: Animals
-    _thumb: {fileID: 21300000, guid: d0ca4d3004d061e4e9190fb77ad60592, type: 3}
+    _thumb: {fileID: 2800000, guid: d0ca4d3004d061e4e9190fb77ad60592, type: 3}
     _key: Animals
   - _name: Cars
-    _thumb: {fileID: 21300000, guid: a306fa01a6a48224ea14bddccb930e31, type: 3}
+    _thumb: {fileID: 2800000, guid: 8e4b6a989c83e8447a7b4238e9d5227d, type: 3}
     _key: Cars
   - _name: Flowers
-    _thumb: {fileID: 21300000, guid: 0c8622aa4fc2c3e43b4231f3cd7e34e0, type: 3}
+    _thumb: {fileID: 2800000, guid: 8872d681228acab40a3ce7ac4704b71a, type: 3}
     _key: Flowers

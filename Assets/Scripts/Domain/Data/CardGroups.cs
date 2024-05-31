@@ -15,11 +15,11 @@ namespace Domain.Data
     public struct CardGroup
     {
         [SerializeField] private string _name;
-        [SerializeField] private Sprite _thumb;
+        [SerializeField] private Texture2D _thumb;
         [SerializeField] private string _key;
 
         public string Name => _name;
-        public Sprite Thumb => _thumb;
+        public Texture2D Thumb => _thumb;
         public string Key => _key;
     }
 }
