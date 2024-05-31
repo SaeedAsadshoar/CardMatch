@@ -1,3 +1,4 @@
+using Component.SettingSystem;
 using Presentation.UI.Panels.Abstraction;
 using UnityEngine;
 
@@ -5,8 +6,6 @@ namespace Presentation.UI.Panels.Elements
 {
     public class UIScaleProgress : UIProgress
     {
-        private const float FILL_SPEED = 1;
-
         [SerializeField] private Transform _loadingIndicatorTransform;
 
         private float _curScale;
@@ -37,7 +36,7 @@ namespace Presentation.UI.Panels.Elements
             _scale = _loadingIndicatorTransform.localScale;
             if (_scale.x < _curScale)
             {
-                _scale.x += FILL_SPEED * Time.deltaTime;
+                _scale.x += SettingService.LoadingsFillSpeed * Time.deltaTime;
                 _loadingIndicatorTransform.localScale = _scale;
             }
         }

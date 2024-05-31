@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Component.AddressableSystem;
+using Component.SettingSystem;
 using Component.ThemeSystem;
 using Component.UniqueIdSystem;
 using Domain.Constants;
@@ -16,14 +17,23 @@ namespace Component.ResourceSystem
         public static async Task InitializeGame()
         {
             _progress = 0;
-            var themesTask = LoadAddressable<Themes>(0, 50, AddressableKeys.THEMES, 2);
+            var settingTask = LoadAddressable<Settings>(0, 10, AddressableKeys.SETTINGS, 3);
+            while (!settingTask.IsCompleted)
+            {
+                await Task.Yield();
+            }
+
+            SettingService.LoadSetting(settingTask.Result);
+
+
+            var themesTask = LoadAddressable<Themes>(10, 50, AddressableKeys.THEMES, 3);
             while (!themesTask.IsCompleted)
             {
                 await Task.Yield();
             }
 
             await Task.Delay(2000);
-            var cardGroupsTask = LoadAddressable<CardGroups>(50, 100, AddressableKeys.CARD_GROUPS, 2);
+            var cardGroupsTask = LoadAddressable<CardGroups>(50, 100, AddressableKeys.CARD_GROUPS, 3);
             while (!cardGroupsTask.IsCompleted)
             {
                 await Task.Yield();

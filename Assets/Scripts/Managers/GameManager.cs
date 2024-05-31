@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Component.EventSystem;
 using Component.PoolSystem;
+using Component.SettingSystem;
 using Component.ThemeSystem;
 using Domain.Constants;
 using Domain.EventClasses;
@@ -13,9 +14,6 @@ namespace Managers
 {
     public class GameManager : MonoBehaviour
     {
-        private const float CARD_WIDTH = 1.5f;
-        private const float CARD_HEIGHT = 1.5f;
-
         [SerializeField] private Transform _gameRoot;
         [SerializeField] private Transform _cardStartPlaceTransform;
         [SerializeField] private GameObject _eachCardPrefab;
@@ -105,8 +103,8 @@ namespace Managers
 
         private void CreateLevel(List<Texture2D> cards)
         {
-            float offsetX = (_width - 1) * CARD_WIDTH / 2.0f;
-            float offsetY = (_height - 1) * CARD_HEIGHT / 2.0f;
+            float offsetX = (_width - 1) * SettingService.CardWidth / 2.0f;
+            float offsetY = (_height - 1) * SettingService.CardHeight / 2.0f;
 
             int cardIndex = 0;
 
@@ -120,8 +118,8 @@ namespace Managers
                     card.transform.localScale = Vector3.one;
                     _cardObjects.Add(card);
 
-                    float x = j * CARD_HEIGHT - offsetY;
-                    float y = i * CARD_WIDTH - offsetX;
+                    float x = j * SettingService.CardHeight - offsetY;
+                    float y = i * SettingService.CardWidth - offsetX;
                     card.GetComponent<Card>().Initialize(themeTexture, cards[cardIndex], x, y, OnClickOnCard);
                     cardIndex++;
                 }
@@ -130,8 +128,8 @@ namespace Managers
 
         private void SetLevelScale()
         {
-            float widthScale = _gameGoldenFrame.localScale.x / (_height * CARD_HEIGHT);
-            float heightScale = _gameGoldenFrame.localScale.y / (_width * CARD_WIDTH);
+            float widthScale = _gameGoldenFrame.localScale.x / (_height * SettingService.CardHeight);
+            float heightScale = _gameGoldenFrame.localScale.y / (_width * SettingService.CardWidth);
 
             float scale = Mathf.Min(widthScale, heightScale);
             _gameRoot.transform.localScale = Vector3.one * scale;

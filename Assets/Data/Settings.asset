@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a51918e660145208acf024d10c25bb2, type: 3}
+  m_Name: Settings
+  m_EditorClassIdentifier: 
+  _eachCardRestTime: 1
+  _eachCardShowTime: 5
+  _cardWidth: 1.5
+  _cardHeight: 1.5
+  _panelShowSpeed: 2
+  _panelHideSpeed: 3
+  _loadingsFillSpeed: 1
